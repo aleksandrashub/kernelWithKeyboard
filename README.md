@@ -3,11 +3,18 @@
 Ядро с поддержкой клавиатуры
 
 Как запустить ядро.
-1. Перемещаем все файлы в одну папку
-2. Далее cd /название папки с файлами\
-3.nasm -f elf32 kernel.asm -o kasm.o
-4. gcc -fno-stack-protector -m32 -c kernel.c -o kc.o
-5.ld -m elf_i386 -T link.ld -o kernel kasm.o kc.o
-6. Запускаем на эмуляторе с помощью команды qemu-system-i386 -kernel kernel
+1. Устанавливаем необходимое программное обеспечение для сборки проекта: nasm, qemu kvm, gcc. Для установки i386elfgcc:
+   wget http://newos.org/toolchains/i386-elf-4.9.1-Linux-x86_64.tar.xz
+   mkdir /usr/local/i386elfgcc
+   tar -xf i386-elf-4.9.1-Linux-x86_64.tar.xz -C /usr/local/i386elfgcc --strip-components=1
+   export PATH=$PATH:/usr/local/i386elfgcc/bin
+3. Перемещаем все файлы в одну папку
+4. Далее cd /название папки с файлами\
+5. Прописываем команды:
+   nasm -f elf32 kernel.asm -o kasm.o
+   gcc -fno-stack-protector -m32 -c kernel.c -o kc.o
+   ld -m elf_i386 -T link.ld -o kernel kasm.o kc.o
+6. Запускаем на эмуляторе с помощью команды:
+   qemu-system-i386 -kernel kernel
 7. Пробуйте ввести текст
    
