@@ -2,6 +2,14 @@
 
 Ядро с поддержкой клавиатуры
 
+ПО для сборки:
+-Qemu KVM
+-NASM
+-GCC
+-GNU linker
+Собрать кросс-компилятор gcc для i386 архитектуры процессора
+
+
 Как запустить ядро.
 1. Устанавливаем необходимое программное обеспечение для сборки проекта: nasm, qemu kvm, gcc. Для установки i386elfgcc:
    wget http://newos.org/toolchains/i386-elf-4.9.1-Linux-x86_64.tar.xz
@@ -9,7 +17,7 @@
    tar -xf i386-elf-4.9.1-Linux-x86_64.tar.xz -C /usr/local/i386elfgcc --strip-components=1
    export PATH=$PATH:/usr/local/i386elfgcc/bin
 3. Перемещаем все файлы в одну папку
-4. Далее cd /название папки с файлами\
+4. Далее cd /название папки с файлами
 5. Прописываем команды:
    nasm -f elf32 kernel.asm -o kasm.o
    gcc -fno-stack-protector -m32 -c kernel.c -o kc.o
